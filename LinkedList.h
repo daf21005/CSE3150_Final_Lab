@@ -24,7 +24,22 @@ class LinkedList {
         void SERVER_buildCircularLinkedList();
         void SERVER_deleteCircularLinkedList();
         void SERVER_printLinkedList();
-        void CLIENT_printLinkedList();        
+        void CLIENT_printLinkedList();
+
+        // helper functions for unit testing - AI implemented here
+        // is [zero] reachable via weak ptr
+        bool isRootAlive() const { return weak_root.lock() != nullptr; }
+ 
+        // is [zero]'s next node ([one]) still reachable via weak ptr
+        // after SERVER_delete this returns false since [one] is destroyed
+        bool isRootNextAlive() const {
+            auto r = weak_root.lock();
+            if (!r) return false;
+            return r->weak_next.lock() != nullptr;
+        }
+    
+        // how many shared_ptrs currently own [zero]?
+        int getRootUseCount() const { return root ? root.use_count() : 0; }
 
 };
 
