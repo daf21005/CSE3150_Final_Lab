@@ -11,7 +11,7 @@ void LinkedList::SERVER_buildCircularLinkedList() {
 
     weak_root = root;
 
-    // walking foward
+    // iterating through number of nodes and creating the connection for each name
     std::shared_ptr<Node> current = root;
     for (int i = 1; i < numberOfNodes; i++) {
         current->next = std::make_shared<Node>(names[i]);
@@ -19,7 +19,7 @@ void LinkedList::SERVER_buildCircularLinkedList() {
         current = current->next;
     }
 
-    // close the circle
+    // close the circle (final node points to the root)
     current->next = root;
     current->weak_next = root;
 }

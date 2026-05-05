@@ -26,7 +26,7 @@ class LinkedList {
         void SERVER_printLinkedList();
         void CLIENT_printLinkedList();
 
-        // helper functions for unit testing - AI implemented here
+        // helper functions for unit testing - AI implemented here for creating unittests
         // is [zero] reachable via weak ptr
         bool isRootAlive() const { return weak_root.lock() != nullptr; }
  
